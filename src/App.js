@@ -15,24 +15,33 @@ import { useState } from 'react';
 - props는 컴포넌트의 입력값이다.
 - 이벤트 안에는 함수가 온다.
 - 문자열이 아닌 데이터 타입은 {}로 묶는다.
+- State는 하나는 값, 하나는 수정할 때 쓰는 
 */
 
 function Counter({title, initValue}) { // props
   // let countState = useState(initValue);
-  // let count = countState[0]; 
-  // let setCount = countState[1]; // 값을 수정할 때 사용
+  // let count = countState[0]; // 데이터를 읽을때 쓰는 것
+  // let setCount = countState[1]; // 데이터를 수정할 때 쓰는 것
 
   // console.log(countState);
 
   const  [count, setCount] = useState(initValue); // 위의 코드와 동일한 의미
 
+  const up = () => { // arrow function
+    console.log("up");
+    setCount(count + 1);
+  };
+
+  const down = () => {
+    console.log("down");
+    setCount(count -1);
+  }
+
   return (
     <div>
       <h1>{title}</h1>
-      <button onClick={function(){
-        console.log("up");
-        setCount(count + 1);
-      }}>🎀</button> 👉👉 {count}
+      <button onClick={up}>🎀</button>
+      <button onClick={down}>🎀</button> 👉👉 {count}
     </div>
   );
 }
