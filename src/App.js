@@ -18,6 +18,7 @@ import { useState } from 'react';
 - useState의 첫번째 원소는 초기값이 들어가 있는 value, 두번째 원소는 값을 바꿀때 사용하는 set 
 - use가 붙어있는 요소를 hook 이라고 함
 - 리액트에서 style은 -말고 대문자 margin-right(x) -> marginRight(o)
+- 리액트에서는 class 라는 키워드를 쓰지 않기로 함 js에서 써서, className (0)
 */
 
 function Counter({title, initValue}) { // props
@@ -38,10 +39,11 @@ function Counter({title, initValue}) { // props
   }
 
   return (
+    
     <div>
       <h1>{title}</h1>
-      <button onClick={up} style={{marginRight:10}}>🎀</button>
-      <button onClick={down} style={{marginRight:10}}>🎀</button> 👉👉 {count}
+      <button className="spaceRight" onClick={up}>🎀</button>
+      <button className="spaceRight" onClick={down}>👇</button> 👉👉 {count}
     </div>
   );
 }
@@ -51,7 +53,6 @@ function App() {
     <div>
       <Counter title = "불면증카운터" initValue = {10}></Counter>
       <Counter title = "입장객카운터" initValue = {20}></Counter>
-      <img src="/img.jpg"></img>
     </div>
   );
 }
