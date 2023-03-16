@@ -21,21 +21,31 @@ function Counter({title, initValue}) {
     })
   }, []) // 빈 배열을 넣어주면 useEffect가 한번만 동작
 
-  const up = () => { // arrow function
-    fetch('http://localhost:9999/counter', { // 서버와 통신, db.json의 counter value 값도 증가 
-      method: 'PATCH',
+  const up = async () => { // Async/Await 
+    fetch('http://localhost:9999/counter', { // 서버와 통신
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ value: count + 1 })
     })
     .then((resp)=>{
-      return resp.json();
+      return resp.json(); // promise return 
     })
     .then((result)=>{
       setCount(result.value);
       console.log('result.value', result.value);
     })
+
+    // 위 아래 두 코드는 같은 코드 
+
+    const resp = await fetch('http://localhost:9999/counter', { // Async/Await 
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ value: count + 1 })
+    })
+    const result = await resp.json();
   }
 
   const down = () => {
@@ -128,5 +138,11 @@ export default App;
   - 컴포넌트가 리로딩 될때마다 같이 실행된다
   - 이걸 막고싶으면(딱 한번만 노출되게 하고싶으면) 두번째 파라미터로 빈 배열을 넣어준다. 
 
-- 서버와 통신하려면 fetch 사용
+- 서버와 통신하려면 fetch 사용 -> return 값이 promise
+
+- Async/Await 
+- 비동기가 순차적으로 처리되어야 할 경우 waitAndReturnCallback 계속 => callback hell
+- 비동기 작업을 코드를 쉽게하기 위해 promise 등장 waitAndReturnPromise
+- Async/Await 등장, return 값이 promise인 경우 앞에 await 키워드를 붙이면 return 값이 then으로 받은 값과 같음
+
 */
