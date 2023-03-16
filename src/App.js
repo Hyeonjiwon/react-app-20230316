@@ -18,7 +18,7 @@ function Counter({title, initValue}) {
       setCount(result.value);
       console.log('result', result.value);
     })
-  })
+  }, []) // 빈 배열을 넣어주면 useEffect가 한번만 동작
 
   const up = () => { // arrow function
     setCount(count + 1);
@@ -33,7 +33,7 @@ function Counter({title, initValue}) {
     <div>
       <h1>{title}</h1>
       <button className= {'spaceRight ' + styles.backgroundPink} onClick={up}>🎀</button>
-      <button className='spaceRight' onClick={down}>👇</button> 👉👉 {count}
+      <button className= {'spaceRight ' + styles.backgrounGreen} onClick={down}>👇</button> 👉👉 {count}
     </div>
   );
 }
@@ -86,4 +86,9 @@ export default App;
       console.log('result', result.value);
   })
 - counter의 value값을 애플리케이션으로 가져와서 넣어준다 
+
+- side effect : 외부와 통신하는, 결과를 예측할 수 없는 코드
+- side effect는 useEffect callback 함수 안에 넣어준다.
+  - 컴포넌트가 리로딩 될때마다 같이 실행된다
+  - 이걸 막고싶으면(딱 한번만 노출되게 하고싶으면) 두번째 파라미터로 빈 배열을 넣어준다. 
 */
