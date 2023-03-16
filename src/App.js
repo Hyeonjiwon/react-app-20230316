@@ -5,21 +5,17 @@ import { useState, useEffect } from 'react';
 console.log(styles.backgroundPink);
 
 function Counter({title, initValue}) {
-  let [count, setCount] = useState(initValue); // 위의 코드와 동일한 의미
+  let [count, setCount] = useState(initValue);
+
+  async function init() {
+    const resp = await fetch('http://localhost:9999/counter')
+    const result = await resp.json();
+    setCount(result.value);
+  }
 
   useEffect(() => {
-    // 서버에 있는 데이터 가져오기 -> 이 코드는 서버의 상태에 따라 동작을 어떻게 할지 알 수 없음, 결과를 예측할 수 없다
-    // react는 이런 불온한 코드를 격리 시킨다. useEffect를 사용해서 
-    // sideEffect 코드는 useEffect 안에 넣어준다
-    fetch('http://localhost:9999/counter')
-    .then((resp)=>{
-      return resp.json();
-    })
-    .then((result)=>{
-      setCount(result.value);
-      console.log('result', result.value);
-    })
-  }, []) // 빈 배열을 넣어주면 useEffect가 한번만 동작
+    init();
+  }, [])
 
   const up = async () => { // Async/Await 
     // 비동기를 동기적으로 변경 해주는 코드 
