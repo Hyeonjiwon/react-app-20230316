@@ -1,9 +1,11 @@
 .backgroundPink {
     background-color: pink;
     border-radius: 5px;
-    border: 2px solid rgb(209, 34, 34);
+    border: 2px solid rgb(223, 172, 172);
 }
 
 .backgroundGreen {
-    background-color: green;
+    background-color: green;    
+    border-radius: 5px;
+    border: 2px solid rgb(24, 122, 24);
 }

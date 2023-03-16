@@ -33,7 +33,7 @@ function Counter({title, initValue}) {
     <div>
       <h1>{title}</h1>
       <button className= {'spaceRight ' + styles.backgroundPink} onClick={up}>🎀</button>
-      <button className= {'spaceRight ' + styles.backgrounGreen} onClick={down}>👇</button> 👉👉 {count}
+      <button className= {'spaceRight ' + styles.backgroundGreen} onClick={down}>👇</button> 👉👉 {count}
     </div>
   );
 }
