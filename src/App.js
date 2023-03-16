@@ -34,7 +34,7 @@ function Counter({title, initValue}) {
     })
     .then((result)=>{
       setCount(result.value);
-      console.log('result', result.value);
+      console.log('result.value', result.value);
     })
   }
 
@@ -51,7 +51,7 @@ function Counter({title, initValue}) {
     })
     .then((result)=>{
       setCount(result.value);
-      console.log('result', result.value);
+      console.log('result.value', result.value);
     })
   }
 
@@ -127,4 +127,6 @@ export default App;
 - side effect는 useEffect callback 함수 안에 넣어준다.
   - 컴포넌트가 리로딩 될때마다 같이 실행된다
   - 이걸 막고싶으면(딱 한번만 노출되게 하고싶으면) 두번째 파라미터로 빈 배열을 넣어준다. 
+
+- 서버와 통신하려면 fetch 사용
 */
