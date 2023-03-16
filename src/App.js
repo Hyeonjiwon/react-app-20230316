@@ -29,29 +29,17 @@ function Counter({title, initValue}) { // props
   let [count, setCount] = useState(initValue); // 위의 코드와 동일한 의미
 
   const up = () => { // arrow function
-    // setCount(count + 1);
-
-    console.log("count 1", count);
-        
-    setCount(function(oldCount){
-      console.log("old count 1", count);
-      return oldCount + 1;
-    });
-
-    setCount(function(oldCount){
-      console.log("old count 1", count);
-      return oldCount + 1;
-    });
+    setCount(count + 1);
   }
 
   const down = () => {
-    setCount(count -1);
+    setCount(count - 1);
   }
 
   return (
     <div>
       <h1>{title}</h1>
-      <button onClick={up}>🎀</button>
+      <button onClick={up} style={{marginRight:10}}>🎀</button>
       <button onClick={down}>🎀</button> 👉👉 {count}
     </div>
   );
