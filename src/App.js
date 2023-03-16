@@ -48,11 +48,16 @@ function useCount(initValue) { // use로 시작
 function Counter({title, initValue}) {
   const [count, up, down] = useCount(initValue);
 
-  return (
+  let 양 = '';
+  for(let i=0; i<count; i++) {
+    양 += '🐑';
+  }
+  
+   return (
     <div>
       <h1>{title}</h1>
       <button className= {'spaceRight ' + styles.backgroundPink} onClick={up}>🎀</button>
-      <button className= {'spaceRight ' + styles.backgroundGreen} onClick={down}>👇</button> 👉👉 {count}
+      <button className= {'spaceRight ' + styles.backgroundGreen} onClick={down}>👇</button> 👉👉 {양}
     </div>
   );
 }
