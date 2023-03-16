@@ -17,6 +17,7 @@ import { useState } from 'react';
 - 문자열이 아닌 데이터 타입은 {}로 묶는다.
 - useState의 첫번째 원소는 초기값이 들어가 있는 value, 두번째 원소는 값을 바꿀때 사용하는 set 
 - use가 붙어있는 요소를 hook 이라고 함
+- 리액트에서 style은 -말고 대문자 margin-right(x) -> marginRight(o)
 */
 
 function Counter({title, initValue}) { // props
@@ -40,7 +41,7 @@ function Counter({title, initValue}) { // props
     <div>
       <h1>{title}</h1>
       <button onClick={up} style={{marginRight:10}}>🎀</button>
-      <button onClick={down}>🎀</button> 👉👉 {count}
+      <button onClick={down} style={{marginRight:10}}>🎀</button> 👉👉 {count}
     </div>
   );
 }
