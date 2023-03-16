@@ -1,24 +1,23 @@
 import './App.css';
 import styles from './App.module.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 console.log(styles.backgroundPink);
 
-function Counter({title, initValue}) { // props
-  // let countState = useState(initValue);
-  // let count = countState[0]; // 데이터를 읽을때 쓰는 것
-  // let setCount = countState[1]; // 데이터를 수정할 때 쓰는 것
-  // console.log(countState);
-
+function Counter({title, initValue}) {
   let [count, setCount] = useState(initValue); // 위의 코드와 동일한 의미
 
-  // 서버에 있는 데이터 가져오기 
-  fetch('http://localhost:9999/counter')
-  .then((resp)=>{
-    return resp.json();
-  }).then((result)=>{
-    setCount(result.value);
-    console.log('result', result.value);
+  useEffect(() => {
+    // 서버에 있는 데이터 가져오기 -> 이 코드는 서버의 상태에 따라 동작을 어떻게 할지 알 수 없음, 결과를 예측할 수 없다
+    // react는 이런 불온한 코드를 격리 시킨다. useEffect를 사용해서 
+    // sideEffect 코드는 useEffect 안에 넣어준다
+    fetch('http://localhost:9999/counter')
+    .then((resp)=>{
+      return resp.json();
+    }).then((result)=>{
+      setCount(result.value);
+      console.log('result', result.value);
+    })
   })
 
   const up = () => { // arrow function
