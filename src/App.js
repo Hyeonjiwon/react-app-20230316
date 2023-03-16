@@ -12,6 +12,15 @@ function Counter({title, initValue}) { // props
 
   let [count, setCount] = useState(initValue); // 위의 코드와 동일한 의미
 
+  // 서버에 있는 데이터 가져오기 
+  fetch('http://localhost:9999/counter')
+  .then((resp)=>{
+    return resp.json();
+  }).then((result)=>{
+    setCount(result.value);
+    console.log('result', result.value);
+  })
+
   const up = () => { // arrow function
     setCount(count + 1);
   }
@@ -24,7 +33,7 @@ function Counter({title, initValue}) { // props
     
     <div>
       <h1>{title}</h1>
-      <button className= {'spaceRight' + styles.backgroundPink} onClick={up}>🎀</button>
+      <button className= {'spaceRight ' + styles.backgroundPink} onClick={up}>🎀</button>
       <button className='spaceRight' onClick={down}>👇</button> 👉👉 {count}
     </div>
   );
@@ -34,7 +43,6 @@ function App() {
   return (
     <div>
       <Counter title="불면증카운터" initValue = {10}></Counter>
-      <Counter title="입장객카운터" initValue = {20}></Counter>
     </div>
   );
 }
@@ -72,5 +80,11 @@ export default App;
       console.log('result', result);
   }); : 서버에서 보내주는 json 데이터 리턴
 - return이 promise면 then() 사용
-
+- db.json의 counter value 값을 ajax로 가져오기 
+  fetch('http://localhost:9999/topics').then((resp)=>{
+    return resp.json();
+  }).then((result)=>{
+      console.log('result', result.value);
+  })
+- counter의 value값을 애플리케이션으로 가져와서 넣어준다 
 */
