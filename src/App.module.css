@@ -1,0 +1,9 @@
+.backgroundPink {
+    background-color: pink;
+    border-radius: 5px;
+    border: 2px solid rgb(209, 34, 34);
+}
+
+.backgroundGreen {
+    background-color: green;
+}

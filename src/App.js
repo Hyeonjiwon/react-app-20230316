@@ -1,6 +1,8 @@
 import './App.css';
+import styles from './App.module.css'
 import { useState } from 'react';
 
+console.log(styles.backgroundPink);
 /*
 - 구체적인 앱은 app.js에서 
 - React는 사용자 정의 함수를 만드는 기술이다.
@@ -25,7 +27,6 @@ function Counter({title, initValue}) { // props
   // let countState = useState(initValue);
   // let count = countState[0]; // 데이터를 읽을때 쓰는 것
   // let setCount = countState[1]; // 데이터를 수정할 때 쓰는 것
-
   // console.log(countState);
 
   let [count, setCount] = useState(initValue); // 위의 코드와 동일한 의미
@@ -40,10 +41,10 @@ function Counter({title, initValue}) { // props
 
   return (
     
-    <div>
+    <div className='backgrounPink'>
       <h1>{title}</h1>
-      <button className="spaceRight" onClick={up}>🎀</button>
-      <button className="spaceRight" onClick={down}>👇</button> 👉👉 {count}
+      <button className= {styles.backgroundPink} onClick={up}>🎀</button>
+      <button className='spaceRight' onClick={down}>👇</button> 👉👉 {count}
     </div>
   );
 }
@@ -51,8 +52,8 @@ function Counter({title, initValue}) { // props
 function App() {
   return (
     <div>
-      <Counter title = "불면증카운터" initValue = {10}></Counter>
-      <Counter title = "입장객카운터" initValue = {20}></Counter>
+      <Counter title="불면증카운터" initValue = {10}></Counter>
+      <Counter title="입장객카운터" initValue = {20}></Counter>
     </div>
   );
 }
