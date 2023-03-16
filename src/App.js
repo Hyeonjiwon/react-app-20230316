@@ -4,8 +4,13 @@ import { useState, useEffect } from 'react';
 
 console.log(styles.backgroundPink);
 
-function Counter({title, initValue}) {
+// 사용자 정의 hook
+function useCount(initValue) { // use로 시작 
   let [count, setCount] = useState(initValue);
+
+  useEffect(() => {
+    init();
+  }, [])
 
   async function init() {
     const resp = await fetch('http://localhost:9999/counter')
@@ -13,13 +18,8 @@ function Counter({title, initValue}) {
     setCount(result.value);
   }
 
-  useEffect(() => {
-    init();
-  }, [])
-
-  const up = async () => { // Async/Await 
-    // 비동기를 동기적으로 변경 해주는 코드 
-    const resp = await fetch('http://localhost:9999/counter', { // Async/Await 
+  const up = async () => { 
+    const resp = await fetch('http://localhost:9999/counter', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ function Counter({title, initValue}) {
   }
 
   const down = async () => {
-    const resp = await fetch('http://localhost:9999/counter', { // Async/Await 
+    const resp = await fetch('http://localhost:9999/counter', { 
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
@@ -41,6 +41,12 @@ function Counter({title, initValue}) {
     const result = await resp.json();
     setCount(result.value);
   }
+
+  return [count, up, down]
+}
+
+function Counter({title, initValue}) {
+  const [count, up, down] = useCount(initValue);
 
   return (
     <div>
@@ -122,4 +128,6 @@ export default App;
 - 비동기 작업을 코드를 쉽게하기 위해 promise 등장 waitAndReturnPromise
 - Async/Await 등장, return 값이 promise인 경우 앞에 await 키워드를 붙이면 return 값이 then으로 받은 값과 같음
 - useEffect의 첫번째 콜백 함수는 async/await 적용이 안된다. 
+
+- 사용자 정의 hook : return 하는 값이 없는 컴포넌트 (?)
 */
