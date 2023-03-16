@@ -62,10 +62,53 @@ function Counter({title, initValue}) {
   );
 }
 
+function Counter2({title, initValue}) {
+  let [count, setCount] = useState(initValue);
+
+  const init = async () => {
+    const resp = await fetch('http://localhost:9999/counter')
+    const result = await resp.json();
+    setCount(result.value);
+  }
+
+  useEffect(() => {
+    init();
+  }, [])
+
+  const up = async () => {
+    const resp = await fetch('http://localhost:9999/counter', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ value: count + 1 }) 
+    })
+    const result = await resp.json();
+    setCount(result.value);
+
+    console.log('up');
+    setCount(count + 1);
+  }
+
+  const down = () => {
+    console.log('down');
+    setCount(count - 1);
+  }
+
+  return (
+    <div>
+      <h1>{title}</h1>
+      <button onClick={up}>+</button>
+      <button onClick={down}>-</button> {count}
+    </div>
+  )
+}
+
 function App() {
   return (
     <div>
       <Counter title="불면증카운터" initValue = {10}></Counter>
+      <Counter2 title="카운터2" initValue = {20}></Counter2>
     </div>
   );
 }
