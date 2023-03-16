@@ -15,7 +15,8 @@ import { useState } from 'react';
 - props는 컴포넌트의 입력값이다.
 - 이벤트 안에는 함수가 온다.
 - 문자열이 아닌 데이터 타입은 {}로 묶는다.
-- State는 하나는 값, 하나는 수정할 때 쓰는 
+- useState의 첫번째 원소는 초기값이 들어가 있는 value, 두번째 원소는 값을 바꿀때 사용하는 set 
+- use가 붙어있는 요소를 hook 이라고 함
 */
 
 function Counter({title, initValue}) { // props
@@ -25,15 +26,25 @@ function Counter({title, initValue}) { // props
 
   // console.log(countState);
 
-  const  [count, setCount] = useState(initValue); // 위의 코드와 동일한 의미
+  let [count, setCount] = useState(initValue); // 위의 코드와 동일한 의미
 
   const up = () => { // arrow function
-    console.log("up");
-    setCount(count + 1);
-  };
+    // setCount(count + 1);
+
+    console.log("count 1", count);
+        
+    setCount(function(oldCount){
+      console.log("old count 1", count);
+      return oldCount + 1;
+    });
+
+    setCount(function(oldCount){
+      console.log("old count 1", count);
+      return oldCount + 1;
+    });
+  }
 
   const down = () => {
-    console.log("down");
     setCount(count -1);
   }
 
@@ -49,8 +60,8 @@ function Counter({title, initValue}) { // props
 function App() {
   return (
     <div>
-      <Counter title = "불면증카운터" initValue = {10}></Counter> 
-      <Counter title = "입장객카운터" initValue = {20}></Counter> 
+      <Counter title = "불면증카운터" initValue = {10}></Counter>
+      <Counter title = "입장객카운터" initValue = {20}></Counter>
       <img src="/img.jpg"></img>
     </div>
   );
